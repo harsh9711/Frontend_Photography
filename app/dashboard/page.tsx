@@ -15,60 +15,60 @@ interface Customer {
   prompt: string;
   image_url: string;
 }
-
+const fallbackData: Customer[] =
+  [
+    {
+      id: "1",
+      prompt: "Photography",
+      image_url: "http://untitled-twkmuar27a-uc.a.run.app/media/images/2024-03-29_16-24-56_7707_3xp83nR.webp"
+    },
+    {
+      id: "2",
+      prompt: "Photography",
+      image_url: "http://untitled-twkmuar27a-uc.a.run.app/media/images/2024-02-04_08-15-27_5490.webp"
+    },
+    {
+      id: "3",
+      prompt: "Photography",
+      image_url: "http://untitled-twkmuar27a-uc.a.run.app/media/images/2024-03-29_17-50-12_9747.webp"
+    },
+    {
+      id: "4",
+      prompt: "Photography",
+      image_url: "http://untitled-twkmuar27a-uc.a.run.app/media/images/2024-03-29_15-17-59_9059.webp"
+    },
+    {
+      id: "5",
+      prompt: "Learning",
+      image_url: "http://untitled-twkmuar27a-uc.a.run.app/media/images/2024-03-29_17-40-08_8905.webp"
+    },
+    {
+      id: "6",
+      prompt: "Learning",
+      image_url: "http://untitled-twkmuar27a-uc.a.run.app/media/images/2024-03-29_16-10-19_5342.webp"
+    },
+    {
+      id: "7",
+      prompt: "Learning",
+      image_url: "http://untitled-twkmuar27a-uc.a.run.app/media/images/2024-03-29_15-12-39_9730.webp"
+    },
+    {
+      id: "8",
+      prompt: "Photography",
+      image_url: "http://untitled-twkmuar27a-uc.a.run.app/media/images/2024-03-29_15-17-50_1770.webp"
+    },
+    {
+      id: "9",
+      prompt: "Learning",
+      image_url: "http://untitled-twkmuar27a-uc.a.run.app/media/images/2024-03-29_16-08-53_5159.webp"
+    }
+  ]
 const Dashboard = () => {
   const token = useSelector((state: RootState) => state.auth.token);
   const customers = useSelector((state: RootState) => state.auth.customers);
   const dispatch = useDispatch();
 
-    const fallbackData: Customer[] =
-[
-    {
-        id: "1",
-        prompt: "Photography",
-        image_url: "http://untitled-twkmuar27a-uc.a.run.app/media/images/2024-03-29_16-24-56_7707_3xp83nR.webp"
-    },
-    {
-        id: "2",
-        prompt: "Photography",
-        image_url: "http://untitled-twkmuar27a-uc.a.run.app/media/images/2024-02-04_08-15-27_5490.webp"
-    },
-    {
-        id: "3",
-        prompt: "Photography",
-        image_url: "http://untitled-twkmuar27a-uc.a.run.app/media/images/2024-03-29_17-50-12_9747.webp"
-    },
-    {
-        id: "4",
-        prompt: "Photography",
-        image_url: "http://untitled-twkmuar27a-uc.a.run.app/media/images/2024-03-29_15-17-59_9059.webp"
-    },
-    {
-        id: "5",
-        prompt: "Learning",
-        image_url: "http://untitled-twkmuar27a-uc.a.run.app/media/images/2024-03-29_17-40-08_8905.webp"
-    },
-    {
-        id: "6",
-        prompt: "Learning",
-        image_url: "http://untitled-twkmuar27a-uc.a.run.app/media/images/2024-03-29_16-10-19_5342.webp"
-    },
-    {
-        id: "7",
-        prompt: "Learning",
-        image_url: "http://untitled-twkmuar27a-uc.a.run.app/media/images/2024-03-29_15-12-39_9730.webp"
-    },
-    {
-        id: "8",
-        prompt: "Photography",
-        image_url: "http://untitled-twkmuar27a-uc.a.run.app/media/images/2024-03-29_15-17-50_1770.webp"
-    },
-    {
-        id: "9",
-        prompt: "Learning",
-        image_url: "http://untitled-twkmuar27a-uc.a.run.app/media/images/2024-03-29_16-08-53_5159.webp"
-    }
-]
+
 
   const [dataLoaded, setDataLoaded] = useState(false);
 
@@ -94,7 +94,6 @@ const Dashboard = () => {
         console.log("API Response:", result);
       } catch (error) {
         console.error("Failed to fetch customers:", error);
-        // Use fallback data when API call fails
         dispatch(setCustomers(fallbackData));
         setDataLoaded(true);
       }
@@ -103,11 +102,11 @@ const Dashboard = () => {
     if (token) {
       fetchCustomers(token);
     } else {
-      // Set fallback data if no token
       dispatch(setCustomers(fallbackData));
       setDataLoaded(true);
     }
-  }, [token, dispatch]);
+  }, [token, dispatch, fallbackData]);
+
 
   const photographyCustomers = customers.filter(
     (customer: Customer) => customer.prompt === "Photography"
