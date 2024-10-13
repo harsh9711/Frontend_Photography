@@ -7,8 +7,6 @@ import Link from "next/link";
 import Footer from "../components/Footer";
 
 const Signup = () => {
-  // Separate state for email and password
-  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
 

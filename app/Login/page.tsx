@@ -33,7 +33,7 @@ const Login = () =>
                             Enter your email address to continue
                         </h2>
                         <p className="sm:text-[24px] text-[12px] font-medium">
-                            Log in to your account. If you don't have one, you will be prompted to create one.
+                            Log in to your account. If you do not have one, you will be prompted to create one.
                         </p>
                     </div>
                     <form

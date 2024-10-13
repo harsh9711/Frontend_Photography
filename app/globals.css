@@ -1,9 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-body{
-    background-color: #f4f4f4;
+@import url("https://path-to-sohne-test-font/some-font.css");
+
+body {
+  font-family: 'Söhne Test', sans-serif;
+      background-color: #f4f4f4;
+
 }
+
 /*  */
 .photography-pagination .swiper-pagination-bullet {
     width: 20px;

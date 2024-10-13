@@ -3,10 +3,10 @@ import Login from './Login/page'
 
 const page = () => {
   return (
-   
-   
-      <div className=''><Login /> </div>
-   
+
+
+    <div className=''><Login /> </div>
+
   )
 }
 
